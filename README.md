@@ -1,1 +1,1 @@
-R code and analysis smaples
+R code and analysis samples
