@@ -6,12 +6,9 @@ Getting and Cleaning Data Project
 
 The files for this project are as follows:
 
-RawData.zip - This is the compressed raw data file downloaded from a link from the project page on the course Web site. The source link is  https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
-RawData.zip contains:
-UCI HAR Dataset (directory) - This directory contains the uncompressed raw data. It's contents are described in detail in CodeBook.pdf.
+The source link for the raw data is  https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
 
-CodeBook.pdf - This is a PDF version of the code book for the project. It offers information about the study design and the variables in the raw data, and it provides explicit instructions,
-with code, for obtaining the tidy data from the raw data.
+CodeBook.pdf - This is a PDF version of the code book for the project. It offers information about the study design and the variables in the raw data, and it provides explicit instructions, with code, for obtaining the tidy data from the raw data.
 
 CodeBook.html - HTML version of the code book, essentially identical to the PDF version.
 
