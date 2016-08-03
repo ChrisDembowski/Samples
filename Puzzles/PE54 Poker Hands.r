@@ -206,9 +206,7 @@ bestHand = function( cards = CARDS) {
         value = 2
             
         tiebreaker = c( max( which( rankTable == 2)),
-            min( which( rankTable == 2)), which( rankTable == 1))
-            
-        tiebreaker           
+            min( which( rankTable == 2)), which( rankTable == 1))           
             
     } else if (max( rankTable) == 2 && length( which( rankTable != 0)) == 4) {
             # test for pair
