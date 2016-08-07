@@ -37,6 +37,6 @@ for (i in 1:10) {
 
 }
 
-as.numeric( paste( as.character( digits), collapse = ""))
+as.numeric( paste( as.character( usedDigits), collapse = ""))
     # Rather than a vector containing the individual digits, we'd prefer a
     #   single number. This works because our leading digit is not 0.
