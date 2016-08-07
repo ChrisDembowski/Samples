@@ -26,8 +26,6 @@
 
 
 
-setwd( "~/Documents/Programming/R/R functions and scripts/Project Euler/54 Poker Hands")
-
 getwd()
 
     
@@ -216,8 +214,11 @@ bestHand = function( cards = CARDS) {
         tiebreaker = c( which( rankTable == 2), which( rankTable == 1)[ 3:1])
             
     }
+    
+    tiebreaker = c( tiebreaker, c( 0, 0, 0, 0))
         
-    c( value, tiebreaker) 
+    sum( c( value, tiebreaker)[1:6] * 16L ^ (5:0))
+        # treat each element in c( value, tiebreaker) as successive digits in 6-digit hexidecimal integer (final value numeric) 
     
 }
 
@@ -244,30 +245,16 @@ player2hands = as.matrix( hands[ , 6:10])
 rm( hands, filePath, fileUrl)
 
 
-player1wins = 0
+player1 = vector( length = 1000)
+
+player2 = vector( length = 1000)
 
 for (i in 1:1000) {
 
-    player1 = bestHand( id( player1hands[ i,]))
+    player1[ i] = bestHand( id( player1hands[ i,]))
     
-    player2 = bestHand( id( player2hands[ i,]))
+    player2[ i] = bestHand( id( player2hands[ i,]))
     
-    for (j in 1:6) {
-    
-        if (player1[ j] > player2[ j]) {
-        
-            player1wins = player1wins + 1
-            
-            break
-        
-        } else if (player1[ j] < player2[ j]) {
-        
-            break
-        
-        }
-    
-    }
-
 }
 
-player1wins
+sum( player1 > player2)
