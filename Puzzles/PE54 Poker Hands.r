@@ -218,7 +218,8 @@ bestHand = function( cards = CARDS) {
     tiebreaker = c( tiebreaker, c( 0, 0, 0, 0))
         
     sum( c( value, tiebreaker)[1:6] * 16L ^ (5:0))
-        # treat each element in c( value, tiebreaker) as successive digits in 6-digit hexidecimal integer (final value numeric) 
+        # treat each element in c( value, tiebreaker) as successive digits in
+        #    6-digit hexidecimal integer (final value base 10 numeric) 
     
 }
 
