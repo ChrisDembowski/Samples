@@ -52,13 +52,13 @@ for (i in 1:last) {
 
     u = permMatrix[ i, 1]
     
-    v = as.numeric( paste( as.character( permMatrix[ i, 2:5]), collapse = ""))
+    v = sum( permMatrix[ i, 2:5] * 10 ^ (3:0))
     
-    x = as.numeric( paste( as.character( permMatrix[ i, 1:2]), collapse = ""))
+    x = sum( permMatrix[ i, 1:2] * 10 ^ (1:0))
     
-    y = as.numeric( paste( as.character( permMatrix[ i, 3:5]), collapse = ""))
+    y = sum( permMatrix[ i, 3:5] * 10 ^ (2:0))
     
-    z = as.numeric( paste( as.character( permMatrix[ i, 6:9]), collapse = ""))
+    z = sum( permMatrix[ i, 6:9] * 10 ^ (3:0))
     
     if (u * v == z || x * y == z) products = c( products, z)
     
