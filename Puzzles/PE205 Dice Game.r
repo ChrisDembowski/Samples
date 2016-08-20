@@ -26,7 +26,9 @@
 
 # 1
 # Markov Chains
-# mean execution time: 1.27 ms
+# mean execution time: 0.95 ms
+
+library( expm)
 
 # build transition probability matrices for each Peter & Colin
 peterMarkov = matrix( 0L, nrow = 37, ncol = 41)
@@ -48,21 +50,10 @@ peterMarkov = peterMarkov[ , 1:37] # truncate matrix
 colinMarkov = colinMarkov[ , 1:37] # truncate matrix
 
 
-matrixPower = function( X, pow) { # define function to calculate power of a
-                                  #     matrix
-    
-    Y = X
-
-    for (i in 2:pow) Y = X %*% Y
-    
-    return( Y)
-
-}
-
 # vectors of probabilities for each possible outcome, for each Peter & Colin
-peterOutcomeProbs = matrixPower( peterMarkov, 9)[ 1, -1]
+peterOutcomeProbs = (peterMarkov %^% 9)[ 1, -1]
 
-colinOutcomeProbs = matrixPower( colinMarkov, 6)[ 1, -1]
+colinOutcomeProbs = (colinMarkov %^% 6)[ 1, -1]
 
 peterWinsProb = 0L
 
