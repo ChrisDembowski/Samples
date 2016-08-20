@@ -3,13 +3,26 @@
 
 # http://wordplay.blogs.nytimes.com/2016/06/27/jordan-ellenberg-the-lottery-scheme/
 
-# Starting in 2005, a group of M.I.T. students executed a daring lottery scheme, eventually winning over $3.5 million in a game called Massachusetts Cash WinFall. Central to their plan was an ingenious mechanism of avoiding risk by guaranteeing themselves a large payoff on every drawing. How did they do it? The basic idea can already be grasped in the following simplified example:
+# Starting in 2005, a group of M.I.T. students executed a daring lottery scheme,
+#   eventually winning over $3.5 million in a game called Massachusetts Cash
+#   WinFall. Central to their plan was an ingenious mechanism of avoiding risk
+#   by guaranteeing themselves a large payoff on every drawing. How did they do
+#   it? The basic idea can already be grasped in the following simplified
+#   example:
 
-# Suppose you were playing a lottery where each drawing picked 3 out of 7 numbered balls. When a ball is picked, it isn’t replaced, so a drawing always consists of three DIFFERENT numbers, like 2,3,7 or 3,4,5. The order of the numbers doesn’t matter.
+# Suppose you were playing a lottery where each drawing picked 3 out of 7
+#   numbered balls. When a ball is picked, it isn’t replaced, so a drawing
+#   always consists of three DIFFERENT numbers, like 2,3,7 or 3,4,5. The order
+#   of the numbers doesn’t matter.
 
-# If you get all three numbers right, you win the jackpot, $6. If your ticket has two correct numbers out of three, you win a $2 consolation prize. One or fewer correct numbers and you get nothing.
+# If you get all three numbers right, you win the jackpot, $6. If your ticket
+#   has two correct numbers out of three, you win a $2 consolation prize. One or
+#   fewer correct numbers and you get nothing.
 
-# Tickets cost 80 cents each. I want to buy a set of 7 tickets which guarantees me a profit on every drawing. (Since my tickets cost $5.60, this means that either one of my tickets needs to be a jackpot or I need to win consolation prizes with at least three of my tickets.) How should I pick my tickets?
+# Tickets cost 80 cents each. I want to buy a set of 7 tickets which guarantees
+#   me a profit on every drawing. (Since my tickets cost $5.60, this means that
+#   either one of my tickets needs to be a jackpot or I need to win consolation
+#   prizes with at least three of my tickets.) How should I pick my tickets?
 
 
 # accessed 2016 July 01
@@ -25,7 +38,11 @@
 
 # Solution
 
-# There are choose( 7, 2) == 21 different possible pairs of numbers that could potentially win a consolation prize. Each ticket specifies three distinct numbers, or choose( 3, 2) == 3 pairs of numbers. So with 7 tickets, we can have 7 * 3 == 21 pairs of numbers. Can we choose our numbers such that we have 21 distinct pairs of numbers?
+# There are choose( 7, 2) == 21 different possible pairs of numbers that could
+#   potentially win a consolation prize. Each ticket specifies three distinct
+#   numbers, or choose( 3, 2) == 3 pairs of numbers. So with 7 tickets, we can
+#   have 7 * 3 == 21 pairs of numbers. Can we choose our numbers such that we
+#   have 21 distinct pairs of numbers?
 
 
 
@@ -50,7 +67,8 @@ possPairs = matrix(possPairs, ncol = 2, nrow = 21, byrow = TRUE)
 
 
 remainPairs = possPairs
-    # Let's keep track of which pairs we haven't used, while keeping possPairs intact
+    # Let's keep track of which pairs we haven't used, while keeping possPairs
+    #   intact
 
 
 
@@ -60,7 +78,8 @@ remainPairs = possPairs
 tickets = matrix( ncol = 3, nrow = 7)
 
 
-# We want to systematically fill out our tickets. First, we'll write a function to check to see if a pair of numbers remains.
+# We want to systematically fill out our tickets. First, we'll write a function
+#   to check to see if a pair of numbers remains.
 
 check = function( pair, remain = remainPairs) {
 
@@ -75,7 +94,8 @@ check = function( pair, remain = remainPairs) {
 }
 
 
-# We want to be able to easily delete rows from our remainPairs matrix to keep it updated.
+# We want to be able to easily delete rows from our remainPairs matrix to keep
+#   it updated.
 
 rowToDelete = function( pair, remain = remainPairs) {
     
@@ -99,7 +119,8 @@ rowToDelete = function( pair, remain = remainPairs) {
 for (i in 1:7) {
 
     tickets[ i, 1:2] = remainPairs[ 1,]
-        # Since it is in remainPairs vector, this pair has not been used yet, so it can be used for the first two pick on the ith ticket.
+        # Since it is in remainPairs vector, this pair has not been used yet, so
+        #   it can be used for the first two pick on the ith ticket.
             
     remainPairs = remainPairs[ -1,]
         # But we want to delete that pair now that we've used it.
@@ -109,7 +130,8 @@ for (i in 1:7) {
     while (NA %in% tickets[ i,]) {
         
         if (check( c( tickets[ i, 2], remainPairs[ index, 2])) == 0) {
-            # We want to be careful that our 2nd and third numbers have not been paired yet.
+            # We want to be careful that our 2nd and third numbers have not been
+            #   paired yet.
             
             tickets[ i, 3] = remainPairs[ index, 2]
                 # select third number for ith ticket
@@ -143,4 +165,5 @@ tickets
 
 remainPairs
 
-# We have accomplished our goal of picking every possible pair of numbers 1-7 with seven tickets. Our solution is not unique.
+# We have accomplished our goal of picking every possible pair of numbers 1-7
+#   with seven tickets. Our solution is not unique.
